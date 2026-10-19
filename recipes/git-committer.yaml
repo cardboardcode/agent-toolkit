@@ -1,0 +1,30 @@
+---
+title: Git Commit
+description: Commit and push the current code changes.
+instructions: |
+  Commit the current changes to the current branch with an appropriate message summarising the changes in one line and one line only. Consider the following:
+
+  1. Never include Co-Authored statements.
+  2. Do it as fast as possible.
+  3. Add relevant emojis in the following example format as prefix to the message. Ensure there are no duplicate emojis when there are multiple emojis appended.
+  4. Sign off on the commit using `git commit -s`.
+  5. Never use `git commit -S` which requires the setup of a GPG key.
+  6. Do not stage the commit yet. Show the git commit message to the user and present the following options (exactly as they are without any extra modifications) to the user to know what the next step should be:
+     - 1. Be more specific about the git message.
+     - 2. Be more concise about the git message.
+     - 3. Go ahead and push the commit.
+     - 4. Do not continue for now.
+  7. Execute the corresponding action represented by the integer index that the user has inputted.
+  Example format: `:emoji_name_1: :emoji_name_2: :emoji_name_n: <git message>`
+  8. Never push the commit unless the user explicitly says so and 
+
+  ## Choosing Right Emojis
+
+  When selecting emojis, refer to the following mappings:
+  - If something is "Added", include emoji ":heavy_plus_sign:"
+  - If a document is being updated, include emoji ":blue_book:"
+  - If something is "Removed", include emoji ":fire:"
+  - Else, include emoji ":hammer:"
+activities:
+  - "Commit the current changes"
+
