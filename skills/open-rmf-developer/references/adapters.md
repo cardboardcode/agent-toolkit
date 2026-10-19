@@ -6,9 +6,9 @@ https://github.com/open-rmf/awesome_adapters
 
 Output the list in the following format for fleet adapters:
 
-| Fleet Adapter Name | Description |
-|---|---|
-|   |   |
+| Company Name | Integration Level | Description
+|---|---|---|
+|   |   |   |
 
 Output the list in the following format for lift adapters:
 
@@ -27,8 +27,6 @@ Output the list in the following format for devices:
 | Device Name | Description |
 |---|---|
 |   |   |
-
-The above list should also include those in the examples in the Knowledge Reference section below, if not already included.
 
 ## Knowledge Reference
 
