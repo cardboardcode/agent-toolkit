@@ -71,7 +71,6 @@ Load detailed guidance based on context:
 - Variants for Open-RMF (implemented as ament packages): https://github.com/open-rmf/rmf_variants
 - Experimental rust library for parsing SDF: https://github.com/open-rmf/sdformat_rust
 - Rust crate for querying the Gazebo Fuel database: https://github.com/open-rmf/gz-fuel-rs
-- Library to export Bevy meshes into gltf files: https://github.com/open-rmf/bevy_gltf_export
 - Experimental visualizer for dense buildings in RMF: https://github.com/open-rmf/rmf_site
 - Navigation graph generator for building map files using the site editor: https://github.com/open-rmf/rmf_site_ros2
 - Rust version of building map server that supports both sites and buildings: https://github.com/open-rmf/rmf_site_map_server
@@ -82,7 +81,6 @@ Load detailed guidance based on context:
 - Modified menge lib for colcon build: https://github.com/open-rmf/menge_vendor
 - Deployment tools for using RMF in clouds: https://github.com/open-rmf/rmf-cloud-tools
 - Lift emulator for testing interface controllers: https://github.com/open-rmf/mock-lift-io
-- Stubborn buddies is a buddy-based failover system, where two processes will watch each in order to always keep one or more ROS2 nodes active: https://github.com/open-rmf/stubborn_buddies
 - RMF/RoMi-H fleet adapter for the MiR API: https://github.com/open-rmf/fleet_adapter_mir
 - An open source fleet adapter for integrating Otto robots with Open-RMF: https://github.com/open-rmf/fleet_adapter_clearpath
 - RMF Fleet adapter for integrating Gaussian Ecobot robots: https://github.com/open-rmf/fleet_adapter_ecobot
