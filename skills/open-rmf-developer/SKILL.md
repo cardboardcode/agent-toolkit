@@ -1,6 +1,6 @@
 ---
 name: open-rmf-developer
-description: Explains 
+description: Explains concepts, topics, functions and history concerning the Open-RMF (Robotic Middleware Framework) open-source fleet orchestration and traffic-deconfliction technology stack that is publicly available.
 license: Apache 2.0
 compatibility: opencode, goose
 metadata:

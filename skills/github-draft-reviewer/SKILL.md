@@ -5,6 +5,14 @@ description: >-
   evaluation without submitting them. Use when the user wants to review a GitHub
   PR, generate pending PR comments, perform multi-perspective code reviews on a
   PR, or evaluate PR changes against repository AGENTS.md rules.
+license: Apache 2.0
+compatibility: opencode, goose
+metadata:
+  author: https://github.com/aaronchongth
+  version: "1.0.0"
+  domain: language
+  triggers: PR, Pull Request, Review, Draft PR
+  role: specialist
 ---
 
 # GitHub Draft PR Reviewer
