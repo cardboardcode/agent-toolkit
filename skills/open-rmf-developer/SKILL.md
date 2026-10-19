@@ -23,6 +23,7 @@ Load detailed guidance based on context:
 |-------|-----------|-----------|
 | Simulations | `references/simulations.md` | Simulation, hotel, office, campus, triple_H, clinic, airport_terminal |
 | Compatibilities | `references/compatibilities.md` | Dependency, gazebo, distribution, ROS 2 distribution, jazzy, lyrical, humble, rolling |
+| Adapters | `references/adapters.md` | adapters, doors, lifts, integration |
 
 ## Constraints
 
@@ -81,14 +82,7 @@ Load detailed guidance based on context:
 - Modified menge lib for colcon build: https://github.com/open-rmf/menge_vendor
 - Deployment tools for using RMF in clouds: https://github.com/open-rmf/rmf-cloud-tools
 - Lift emulator for testing interface controllers: https://github.com/open-rmf/mock-lift-io
-- RMF/RoMi-H fleet adapter for the MiR API: https://github.com/open-rmf/fleet_adapter_mir
-- An open source fleet adapter for integrating Otto robots with Open-RMF: https://github.com/open-rmf/fleet_adapter_clearpath
-- RMF Fleet adapter for integrating Gaussian Ecobot robots: https://github.com/open-rmf/fleet_adapter_ecobot
-- Open-RMF full control fleet adapter for the Turtlebot 4 and other robots running Navigation2: https://github.com/open-rmf/fleet_adapter_tb4
-- Bridge Temi SDK to a Temi Fleet Adapter over SocketIO: https://github.com/open-rmf/TemiFleetAdapterBridge
-- An MQTT client for temi: https://github.com/open-rmf/temi-mqtt-client
-- An RMF adapter for integrating smart doors provided by Dormakaba: https://github.com/open-rmf/door_adapter_dormakaba
-- A curated list of adapters from the community which can be used with Open-RMF: https://github.com/open-rmf/awesome_adapters
+
 - CMake macros for adding tests written using Catch2: https://github.com/open-rmf/ament_cmake_catch2
 - Uncrustify CMake hook: https://github.com/open-rmf/rmf_cmake_uncrustify
 - A vendoring package for https://github.com/pboettch/json-schema-validator: https://github.com/open-rmf/nlohmann_json_schema_validator_vendor
