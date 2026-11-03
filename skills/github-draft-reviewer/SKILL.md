@@ -25,12 +25,13 @@ Pending reviews remain in draft mode on GitHub, visible only to the authenticate
 
 ## Formatting Constraints (Mandatory)
 
-All generated review summaries, inline comments, and subagent outputs must follow these strict formatting rules:
+All generated review summaries, inline comments, and subagent outputs must follow these formatting rules:
+* Use rich, structured GitHub Flavored Markdown (GFM) syntax so comments are visually appealing and easy to scan—never post a large, unstructured wall of text.
+* Break up explanations using headings (`###`, `####`), **bold** key terms and labels, *italics* for emphasis, bulleted or numbered lists, blockquotes or GitHub alerts (`> [!NOTE]`, `> [!WARNING]`, `> [!IMPORTANT]`), and collapsible `<details>` blocks for verbose context.
+* Utilize Markdown tables wherever possible to complement explanations (for example: summarizing review findings by file/category, comparing current vs. proposed behavior, listing edge cases, or contrasting architectural trade-offs).
+* Utilize `mermaid` diagrams (`flowchart`, `sequenceDiagram`, `stateDiagram-v2`, `classDiagram`) wherever possible to visually illustrate control flow, call sequences, concurrency/race conditions, state transitions, or architectural changes.
+* Use fenced code blocks (such as ```` ```suggestion ```` or ```` ```cpp ````) and inline backticked identifiers (`` `path/to/file` ``) for code references and actionable fixes.
 * Do not use emojis anywhere.
-* Do not use bold, italic, or underline fonts (avoid double asterisks, single asterisks around words, underscores for italics, or HTML underline tags).
-* Do not use numbered lists (avoid 1., 2., 3.).
-* Only use asterisk bullet points (*) for lists and items.
-* Code blocks (such as ```suggestion or ```cpp) and backticked identifiers (`path/to/file`) are permitted.
 
 ---
 
@@ -53,7 +54,7 @@ flowchart TD
     E --> F[Subagent 1: Correctness and Bugs]
     E --> G[Subagent 2: Architecture and Security]
     E --> H[Subagent 3: Guidelines and Style]
-    F & G & H --> I[Consolidate and Enforce Plain Formatting]
+    F & G & H --> I[Consolidate and Format with Rich Markdown, Tables, and Mermaid]
     I --> J[Pre-Validate and Auto-Align Diff Lines]
     J --> K[Post Draft Review via GitHub REST API]
     K --> L[Return PR URL with Pending Comments to User]
@@ -103,12 +104,12 @@ Merge findings from the 3 subagents:
 * Deduplicate: Merge overlapping findings on the same code lines.
 * Noise Reduction: Omit pedantic or low-confidence remarks unless mandated by `AGENTS.md`.
 * Formatting Enforcement:
+  * Ensure all comments and summaries use appealing, structured Markdown (headings, **bold** labels, *italics*, bulleted/numbered lists, blockquotes/alerts, and code/suggestion blocks) rather than a huge wall of text.
+  * Incorporate Markdown tables (such as finding summaries, edge-case matrices, or before/after comparisons) and `mermaid` diagrams (such as flowcharts, sequence diagrams, or state diagrams) wherever possible to complement the review explanation.
   * Remove all emojis.
-  * Remove all bold, italic, or underline fonts.
-  * Convert any numbered lists to asterisk bullet points (*).
 * Highlight Uncertainties / Maintainer Notes:
-  * For points where the agents are uncertain about business requirements or domain context, note it with a plain text prefix: `Maintainer Attention: ...`
-* Compile a top-level review summary with model attribution header.
+  * For points where the agents are uncertain about business requirements or domain context, highlight them clearly using a callout or alert (e.g., `> [!IMPORTANT]\n> **Maintainer Attention:** ...`).
+* Compile a structured top-level review summary (featuring an overview table of findings and architectural/flow Mermaid diagrams where applicable) with the model attribution header.
 
 ### Step 5: Pre-Validate Lines and Post Pending (Draft) Review to GitHub
 

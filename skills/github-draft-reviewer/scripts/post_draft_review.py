@@ -269,17 +269,21 @@ def format_review_summary(
         model_label = f" ({resolved_model})" if resolved_model else ""
         if "AI-Assisted Code Review" not in summary_body:
             result += (
-                f"AI-Assisted Code Review{model_label}: This draft review was generated "
-                "via a 3-agent multi-perspective analysis (Correctness, Architecture, Guidelines). "
+                f"> [!NOTE]\n"
+                f"> **AI-Assisted Code Review{model_label}:** This draft review was generated "
+                "via a 3-agent multi-perspective analysis (*Correctness*, *Architecture*, *Guidelines*). "
                 "Please review and adjust findings before final submission.\n\n"
             )
 
     result += summary_body
 
     if out_of_diff_notes:
-        result += "\n\nGeneral / Out-of-Diff Notes:\n"
-        for note in out_of_diff_notes:
-            result += f"\n* `{note.get('path')}:{note.get('line')}`:\n{note.get('body')}\n"
+        result += "\n\n---\n\n### General / Out-of-Diff Notes\n\n"
+        result += "| # | File | Line |\n| :--- | :--- | :--- |\n"
+        for idx, note in enumerate(out_of_diff_notes, start=1):
+            result += f"| {idx} | `{note.get('path')}` | `{note.get('line')}` |\n"
+        for idx, note in enumerate(out_of_diff_notes, start=1):
+            result += f"\n#### {idx}. `{note.get('path')}:{note.get('line')}`\n\n{note.get('body')}\n"
 
     return result
 

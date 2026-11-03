@@ -7,11 +7,11 @@ This reference defines the role prompts for the 3 reviewer subagents and the con
 ## Formatting Constraints for All Subagents and Reviews
 
 All reviewer subagents and consolidation steps must adhere to these formatting rules:
+* Avoid walls of text: Structure all review summaries and inline comment bodies using rich GitHub Flavored Markdown (headings, **bold** key terms/labels, *italics*, bulleted and numbered lists, blockquotes/GitHub alerts like `> [!NOTE]` or `> [!WARNING]`, and collapsible `<details>` sections) so they are visually appealing and effortless to scan.
+* Use Tabular Formatting: Utilize Markdown tables wherever possible to organize multi-dimensional information, such as edge-case matrices, before/after behavior comparisons, parameter/type checks, trade-off evaluations, or summary breakdowns.
+* Use Mermaid Diagrams: Utilize `mermaid` code blocks (`flowchart`, `sequenceDiagram`, `stateDiagram-v2`, `classDiagram`) wherever possible to visually complement explanations of control flow, call chains, race conditions, state transitions, or architectural relationships.
+* Code blocks (such as ```` ```suggestion ```` or ```` ```cpp ````) and backticked identifiers (`` `path/to/file` ``) are encouraged.
 * Do not use emojis anywhere in review summaries, bodies, or inline comments.
-* Do not use bold, italic, or underlined fonts (avoid double asterisks, single asterisks around words, underscores for italics, or HTML underline tags).
-* Do not use numbered lists (avoid 1., 2., 3.).
-* Only use asterisk bullet points (*) for lists and items.
-* Code blocks (such as ```suggestion or ```cpp) and backticked identifiers (`path/to/file`) are permitted.
 
 ---
 
@@ -32,9 +32,9 @@ Context:
 {AGENTS_MD_RULES}
 
 Formatting Rules:
+* Format every comment using rich, readable Markdown (headings, **bold** labels, *italics*, bulleted/numbered lists, and GitHub alerts) so it is visually appealing and never a wall of text.
+* Utilize Markdown tables (e.g., to list edge cases, input/output states, or failure modes) and `mermaid` diagrams (e.g., `sequenceDiagram` or `flowchart` to illustrate race conditions, execution paths, or state bugs) wherever possible to complement your explanation.
 * Do not use emojis.
-* Do not use bold, italic, or underline fonts.
-* Do not use numbered lists. Only use asterisk bullet points (*).
 
 Instructions:
 * Review the diff and source code for:
@@ -48,7 +48,7 @@ Instructions:
   * line: Target line number in the modified file (new/right side of diff)
   * category: Bug, Question, or Maintainer Note
   * confidence: High, Medium, or Low
-  * body: Clear explanation of the bug and recommended fix (using ```suggestion blocks where applicable)
+  * body: Well-structured Markdown explanation of the bug, complemented by a Markdown table or `mermaid` diagram where applicable, and a recommended fix (using ```suggestion blocks where applicable)
 * If you are unsure about the broader context or business intent, flag it as Maintainer Note or Question so the maintainer can evaluate.
 ```
 
@@ -71,9 +71,9 @@ Context:
 {AGENTS_MD_RULES}
 
 Formatting Rules:
+* Format every comment using rich, readable Markdown (headings, **bold** labels, *italics*, bulleted/numbered lists, and GitHub alerts) so it is visually appealing and never a wall of text.
+* Utilize Markdown tables (e.g., to compare architectural trade-offs, complexity, or security impacts) and `mermaid` diagrams (e.g., `flowchart`, `classDiagram`, or `sequenceDiagram` to visualize component coupling, data flow, or proposed restructuring) wherever possible to complement your explanation.
 * Do not use emojis.
-* Do not use bold, italic, or underline fonts.
-* Do not use numbered lists. Only use asterisk bullet points (*).
 
 Instructions:
 * Review the diff and architecture for:
@@ -87,7 +87,7 @@ Instructions:
   * line: Target line number in the modified file
   * category: Architecture, Suggestion, or Maintainer Note
   * confidence: High, Medium, or Low
-  * body: Actionable feedback with rationale
+  * body: Actionable, well-formatted Markdown feedback with rationale, complemented by a Markdown table or `mermaid` diagram where applicable
 * Note trade-offs or design uncertainties with category Maintainer Note.
 ```
 
@@ -110,9 +110,9 @@ Context:
 {AGENTS_MD_RULES}
 
 Formatting Rules:
+* Format every comment using rich, readable Markdown (headings, **bold** labels, *italics*, bulleted/numbered lists, and GitHub alerts) so it is visually appealing and never a wall of text.
+* Utilize Markdown tables (e.g., to map missing test cases, compare naming/style conventions, or checklist guideline compliance) and `mermaid` diagrams (where helpful to illustrate test workflows or module organization) to complement your explanation.
 * Do not use emojis.
-* Do not use bold, italic, or underline fonts.
-* Do not use numbered lists. Only use asterisk bullet points (*).
 
 Instructions:
 * Review the diff against repository conventions:
@@ -124,7 +124,7 @@ Instructions:
   * path: File path
   * line: Line number in the new file
   * category: Guidelines, Test Gap, Doc Gap, or Maintainer Note
-  * body: Explanation referencing specific guidelines and suggested fixes
+  * body: Structured Markdown explanation referencing specific guidelines, complemented by a Markdown table or `mermaid` diagram where applicable, and suggested fixes
 * If convention rules are ambiguous or subjective, flag as Maintainer Note.
 ```
 
@@ -134,11 +134,11 @@ Instructions:
 
 The orchestrating agent merges findings from all 3 subagents using these rules:
 
-* Deduplication: If multiple agents flag the same line or issue, merge them into a single comprehensive comment combining the bug analysis, architectural impact, and suggested fix.
+* Deduplication: If multiple agents flag the same line or issue, merge them into a single comprehensive, well-structured comment combining the bug analysis, architectural impact, and suggested fix.
 * Noise Reduction: Discard low-confidence, purely cosmetic nitpicks unless explicitly required by repository guidelines.
 * Formatting Enforcement:
-  * No emojis
-  * No bold, italic, or underline fonts
-  * No numbered lists; only asterisk bullet points (*)
+  * Ensure all inline comments and the overall review summary use rich Markdown formatting (headings, **bold** emphasis, *italics*, lists, blockquotes/alerts, and code blocks) to prevent walls of text.
+  * Include Markdown tables (e.g., an overall findings summary table in the review body, or comparison/edge-case tables in inline comments) and `mermaid` diagrams (e.g., architectural or control-flow diagrams) wherever possible to complement explanations.
+  * No emojis.
 * Highlight Uncertainties for Maintainers:
-  * Add a Maintainer Attention note to comments where agents identified ambiguity, missing domain context, or architectural trade-offs.
+  * Add a highlighted `> [!IMPORTANT]\n> **Maintainer Attention:** ...` callout to comments where agents identified ambiguity, missing domain context, or architectural trade-offs.

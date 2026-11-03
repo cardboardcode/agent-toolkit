@@ -35,6 +35,18 @@ Fleet/robot names come from the `rmf_fleet` fleet config YAMLs under `rmf_demos/
 - **Office** is the *only* top-level launch file that sets it: `rmf_demos/launch/office.launch.xml` passes `<arg name="use_reservation_node" value="true"/>`. Since `rmf_demos_gz/launch/office.launch.xml` includes that file, the Gazebo office simulation also runs with the reservation node enabled.
 - None of the other launch files (hotel, clinic, campus, airport_terminal, triple_H, battle_royale, office_mock_traffic_light) pass the argument, so they all use the `false` default.
 
+### Upstream Removal of Build-Time Model Downloads to `~/.gazebo/models`
+
+- In older distributions (`humble`, `jazzy`), `rmf_demos_maps/CMakeLists.txt` ran:
+  ```cmake
+  COMMAND ros2 run rmf_building_map_tools building_map_model_downloader ${map_path} -e ~/.gazebo/models
+  ```
+  which used `pit_crew` during `colcon build` to pre-download Fuel models into `/root/.gazebo/models`.
+- On `main` (and `lyrical`/`rolling`), two upstream commits removed build-time model downloading into `~/.gazebo/models`:
+  - **`open-rmf/rmf_traffic_editor` (`4e38668` — *"Download models through Gazebo (#535)"*)**: Changed `building_map_model_downloader` so it only updates the Fuel model listing cache at `/root/.pit_crew/model_cache.json` and writes `https://fuel.gazebosim.org/...` URIs into the generated `.world` SDF files for Gazebo to download on-demand at runtime.
+  - **`open-rmf/rmf_demos` (`770c1a9` — *"Use builtin gazebo model downloading (#307)"*)**: Removed `-e ~/.gazebo/models` from `rmf_demos_maps/CMakeLists.txt` and changed the custom target to only invoke `ros2 run rmf_building_map_tools building_map_model_downloader`.
+- Consequently, `/root/.gazebo/models` is never created during `colcon build` in `Dockerfile.latest` or `Dockerfile.rolling` (note that this `COPY` line was already removed from `Dockerfile.lyrical`).
+
 ## Knowledge Reference
 
 - Reference: https://github.com/open-rmf/rmf_demos
