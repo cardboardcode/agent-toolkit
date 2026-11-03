@@ -20,6 +20,7 @@ Commit the current changes to the current branch with an appropriate message sum
    - 3. Go ahead and push the commit.
    - 4. Do not continue for now.
 7. Execute the corresponding action represented by the integer index the user inputs.
+8. Do not include duplicate emojis in the message.
 
 Message format: `:emoji_name_1: :emoji_name_2: :emoji_name_n: <git message>`
 
