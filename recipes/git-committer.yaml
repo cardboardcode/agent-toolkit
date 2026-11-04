@@ -16,7 +16,8 @@ instructions: |
      - 4. Do not continue for now.
   7. Execute the corresponding action represented by the integer index that the user has inputted.
   Example format: `:emoji_name_1: :emoji_name_2: :emoji_name_n: <git message>`
-  8. Never push the commit unless the user explicitly says so and 
+  8. Never push the commit unless the user explicitly says so.
+  9. Do not include duplicate emojis in the message.
 
   ## Choosing Right Emojis
 
