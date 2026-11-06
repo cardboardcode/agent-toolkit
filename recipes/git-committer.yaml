@@ -19,6 +19,7 @@ instructions: |
   8. Never push the commit unless the user explicitly says so.
   9. Do not include duplicate emojis in the message.
   10. Ensure that the first letter of the first word is capitalized in the message.
+  11. Ensure that every message ends with ".".
 
   ## Choosing Right Emojis
 
