@@ -11,25 +11,39 @@ Commit the current changes to the current branch with an appropriate message sum
 
 1. Never include `Co-Authored` statements.
 2. Do it as fast as possible.
-3. Add relevant emojis as a prefix to the message (see emoji mapping below). Ensure there are no duplicate emojis when multiple emojis are used.
+3. Add relevant emoji glyphs as a prefix to the message (see mapping below). Use literal emoji characters (e.g. 📘), NOT `:emoji_name:` shortcodes — shortcodes can be mis-rendered (e.g. tinted as a link) by the output renderer. Ensure there are no duplicate emojis when multiple are used.
 4. Sign off on the commit using `git commit -s`.
 5. Never use `git commit -S` (it requires GPG key setup).
-6. Do not stage the commit yet. Show the git commit message to the user and present the following options for the next step:
-   - 1. Be more specific about the git message.
-   - 2. Be more concise about the git message.
-   - 3. Go ahead and push the commit.
-   - 4. Do not continue for now.
+6. Do not stage the commit yet. Show the git commit message to the user by presenting it as plain, unstylized text in the following EXACT format (no markdown heading, no code fence, no inline backticks, no markup of any kind):
+
+     Proposed Commit Message
+
+     <EMOJI GLYPH, e.g. 📘> <INSERT COMMIT MESSAGE HERE>
+
+     After showing the message, present the following options (exactly as they are without any extra modifications) to the user to know what the next step should be:
+     - 1. Be more specific about the git message.
+     - 2. Be more concise about the git message.
+     - 3. Go ahead and push the commit.
+     - 4. Do not continue for now.
 7. Execute the corresponding action represented by the integer index the user inputs.
 8. Never push the commit unless the user explicitly says so. 
 9. Do not include duplicate emojis in the message.
 10. Ensure that the first letter of the first word is capitalized in the message.
 11. Ensure that every message ends with ".".
+12. The template from point 6 must render in the terminal's DEFAULT foreground color only (bright white), with zero styling applied. Enforce this strictly:
+    - Do not add a markdown heading (no leading # or ##) to the label line.
+    - Do not wrap the message in a fenced code block (```) or use inline code backticks.
+    - Do not use bold (**), italic (*), strikethrough, or underline.
+    - Do not emit any ANSI escape sequences or inline HTML such as `<span style=...>`, `<font>`, or `<mark>`.
+    - Output the template as plain, unformatted paragraph text only.
 
-Message format: `:emoji_name_1: :emoji_name_2: :emoji_name_n: <git message>`
+Message format: `<glyph_1> <glyph_2> ... <git message>`, where each `<glyph>` is a literal emoji character (e.g. 📘), never a `:name:` shortcode. Emoji are valid UTF-8 and render correctly in git and on hosted repos.
 
 ## Choosing the Right Emojis
 
-- If something is **Added**, include `:heavy_plus_sign:`
-- If a **document** is being updated, include `:blue_book:`
-- If something is **Removed**, include `:fire:`
-- Else, include `:hammer:`
+Use the literal emoji glyph (never a `:emoji_name:` shortcode):
+
+- If something is **Added**, include ➕
+- If a **document** is being updated, include 📘
+- If something is **Removed**, include 🔥
+- Else, include 🔨
