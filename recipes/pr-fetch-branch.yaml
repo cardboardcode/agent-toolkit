@@ -1,0 +1,30 @@
+---
+title: PR Branch Clone Command
+description: Convert a GitHub PR link into a fast, single-branch git clone command for the PR's head branch.
+instructions: |
+  Given the PR link {{ pr_url }}, produce ONE easy-to-copy bash command that clones only the PR's head branch.
+
+  1. Parse owner, repo, and PR number from the URL: https://github.com/<OWNER>/<REPO>/pull/<NUMBER>.
+  2. Determine the PR's head branch. Preferred method (no auth for public repos):
+     curl -s https://api.github.com/repos/<OWNER>/<REPO>/pulls/<NUMBER> | grep '"head_branch"'
+     If the API is unavailable, ask the user for the branch name instead of guessing.
+  3. Compose the clone command EXACTLY in this shape:
+
+         git clone https://github.com/<OWNER>/<REPO> --branch <HEAD_BRANCH> --single-branch --depth 1
+
+     - --single-branch and --depth 1 are MANDATORY. They minimize download size and time. Never omit them, never suggest a full clone.
+     - No extra flags (no --recurse-submodules, no -b aliases, etc.) unless the user explicitly asks.
+  4. Present the final command as plain, UNSTYLED text (no markdown heading, no code fence, no backticks, no bold, no ANSI escapes) in this EXACT layout:
+
+     Clone Command
+
+     git clone https://github.com/<OWNER>/<REPO> --branch <HEAD_BRANCH> --single-branch --depth 1
+
+  5. Keep the reply to the command block above only (at most one short line beyond it). No explanations or alternatives unless asked.
+activities:
+  - "Generate the fast single-branch clone command for this PR: {{ pr_url }}"
+parameters:
+  - key: pr_url
+    input_type: string
+    requirement: required
+    description: "Full GitHub PR link, e.g. https://github.com/open-rmf/next_gen_prototype/pull/68"
