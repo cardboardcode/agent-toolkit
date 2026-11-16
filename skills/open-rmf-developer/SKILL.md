@@ -21,6 +21,7 @@ Load detailed guidance based on context:
 
 | Topic | Reference | Load When |
 |-------|-----------|-----------|
+| Architecture | `references/architecture.md` | Components, repository list, rmf.repos, packages |
 | Simulations | `references/simulations.md` | Simulation, hotel, office, campus, triple_H, clinic, airport_terminal |
 | Compatibilities | `references/compatibilities.md` | Dependency, gazebo, distribution, ROS 2 distribution, jazzy, lyrical, humble, rolling |
 | Adapters | `references/adapters.md` | adapters, doors, lifts, integration |

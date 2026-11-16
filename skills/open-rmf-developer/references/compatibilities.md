@@ -1,13 +1,6 @@
 ## Compatibility Matrix
 
-Each row is an Open-RMF release line (one per supported ROS 2 distribution). Each **dependency column** lists the pinned version of that core package for the given release, taken from the `rmf.repos` manifest linked in the release notes:
-
-- [rmf_ros2](https://github.com/open-rmf/rmf_ros2) — core ROS 2 integration (fleet adapter, task manager)
-- [rmf_traffic](https://github.com/open-rmf/rmf_traffic) — traffic / path-planning + reservation
-- [rmf_task](https://github.com/open-rmf/rmf_task) — task allocation & sequencing
-- [rmf_demos](https://github.com/open-rmf/rmf_demos) — example fleets & Gazebo worlds (built from source)
-- [rmf_internal_msgs](https://github.com/open-rmf/rmf_internal_msgs) — core message definitions
-- [menge_vendor](https://github.com/open-rmf/menge_vendor) — crowd-simulation engine (third-party)
+Each row is an Open-RMF release line (one per supported ROS 2 distribution). Each **dependency column** lists the pinned version of that core package for the given release, taken from the `rmf.repos` manifest linked in the release notes. The full list of Open-RMF components is in [architecture.md](architecture.md).
 
 | Open-RMF Release | Link | ROS 2 / Ubuntu | Gazebo | rmf_ros2 | rmf_traffic | rmf_task | rmf_demos | rmf_internal_msgs | menge_vendor |
 |---|---|---|---|---|---|---|---|---|---|
