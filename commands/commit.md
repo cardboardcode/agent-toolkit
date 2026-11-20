@@ -1,5 +1,5 @@
 ---
-name: git-commit
+name: commit
 description: Commit and push the current code changes with an emoji-prefixed, signed-off, single-line message, then let the user decide the next step.
 ---
 
