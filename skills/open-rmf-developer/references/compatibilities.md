@@ -13,6 +13,7 @@ Each row is an Open-RMF release line (one per supported ROS 2 distribution). Eac
 > - The **Jazzy** release is the only one documented as *exclusively* supporting **Gazebo Harmonic** (using Harmonic's ECS APIs for up to ~70% better Real-Time Factor); it is the primary supported line on **Ubuntu 24.04**.
 > - The Humble / Iron / Rolling pairings follow the ROS 2 recommended Gazebo release for each distro (Fortress / Garden / Harmonic).
 > - `rmf_demos` is **not shipped as binaries** for any of these releases and must be built from source.
+> - Building **Rolling** on **Ubuntu 26.04** hits a distro-level dependency conflict between `nlohmann-json3-dev` (resolute/main) and `nlohmann-json3.12-dev` (resolute/universe, which declares `Conflicts: nlohmann-json-dev, nlohmann-json3-dev`). The `pybind11-json-dev` rosdep key in `rmf_fleet_adapter_python/package.xml` pulls the conflicting variant in, and rosdep surfaces this as `apt: Failed to detect successful installation of [nlohmann-json3-dev]`. Fix in upstream commit `6009118` (open-rmf PR #520, "Migrate to ROS Lyrical") swaps the rosdep keys from `<depend>pybind11-dev</depend> + <depend>pybind11-json-dev</depend>` to the vendored `<depend>pybind11_vendor</depend> + <depend>pybind11_json_vendor</depend>`, removing the conflicting distro package from the resolver. Any `rmf/rmf_ros2` pin at or after that commit (or `main` at `16a3457`) resolves cleanly on 26.04; Rolling-era pins before it (e.g., `609fe3d`) do not.
 
 ## Knowledge References
 
